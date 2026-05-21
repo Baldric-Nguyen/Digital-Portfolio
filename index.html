@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Portfolio | Nguyễn Sỹ Quyền</title>
+
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    :root{
+      --bg:#f4f8ff;
+      --card:#ffffff;
+      --text:#111827;
+      --sub:#4b5563;
+      --primary:#2563eb;
+      --secondary:#0f172a;
+      --shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    body.dark{
+      --bg:#0b1120;
+      --card:#111827;
+      --text:#f3f4f6;
+      --sub:#cbd5e1;
+      --primary:#60a5fa;
+      --secondary:#1e293b;
+      --shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    body{
+      font-family:'Open+Sans',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      transition:0.4s;
+      overflow-x:hidden;
+    }
+
+    .career-goal{
+  margin-top:30px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  padding:25px;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+.career-goal h3{
+  margin-bottom:18px;
+  color:var(--primary);
+}
+
+.career-goal ul{
+  list-style:none;
+}
+
+.career-goal li{
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--sub);
+}
+
+.career-goal i{
+  color:var(--primary);
+}
+
+    /* HEADER */
+
+    header{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    body.dark header{
+      background:rgba(0,0,0,0.3);
+    }
+
+    nav{
+      width:90%;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:var(--primary);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:var(--primary);
+    }
+
+    .toggle-btn{
+      padding:10px 16px;
+      border:none;
+      border-radius:30px;
+      background:var(--primary);
+      color:white;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 10%;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:700px;
+      height:700px;
+      background:linear-gradient(to right,#2563eb,#06b6d4);
+      border-radius:50%;
+      top:-250px;
+      right:-250px;
+      opacity:0.2;
+      animation:float 8s infinite ease-in-out;
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:linear-gradient(to right,#22c55e,#0ea5e9);
+      border-radius:50%;
+      bottom:-200px;
+      left:-200px;
+      opacity:0.2;
+      animation:float 10s infinite ease-in-out;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(30px);}
+      100%{transform:translateY(0px);}
+    }
+
+    .hero-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+      z-index:2;
+    }
+
+    .hero-text h1{
+      font-size:60px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero-text h2{
+      color:var(--primary);
+      margin-bottom:20px;
+      font-size:28px;
+    }
+
+    .hero-text p{
+      line-height:1.8;
+      color:var(--sub);
+      margin-bottom:18px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:10px 18px;
+      background:rgba(37,99,235,0.1);
+      color:var(--primary);
+      border-radius:30px;
+      margin-bottom:20px;
+      font-weight:600;
+    }
+
+    .hero-image{
+      display:flex;
+      justify-content:center;
+      position:relative;
+    }
+
+    .avatar{
+      width:350px;
+      height:350px;
+      border-radius:50%;
+      overflow:hidden;
+      border:8px solid rgba(255,255,255,0.5);
+      box-shadow:var(--shadow);
+      animation:zoom 4s infinite ease-in-out;
+    }
+
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    @keyframes zoom{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.03);}
+      100%{transform:scale(1);}
+    }
+
+    /* SECTION */
+
+    section{
+      padding:100px 10%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:var(--sub);
+    }
+
+    /* CARDS */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:25px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card h3{
+      margin-bottom:16px;
+      color:var(--primary);
+    }
+
+    .card p{
+      color:var(--sub);
+      line-height:1.8;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 22px;
+      border-radius:40px;
+      background:linear-gradient(to right,#2563eb,#0ea5e9);
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+    }
+
+    /* TIMELINE */
+
+    .timeline{
+      position:relative;
+      margin-top:40px;
+    }
+
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:50%;
+      top:0;
+      width:4px;
+      height:100%;
+      background:var(--primary);
+      transform:translateX(-50%);
+    }
+
+    .timeline-item{
+      width:50%;
+      padding:20px 40px;
+      position:relative;
+    }
+
+    .timeline-item:nth-child(odd){
+      left:0;
+      text-align:right;
+    }
+
+    .timeline-item:nth-child(even){
+      left:50%;
+    }
+
+    .timeline-content{
+      background:var(--card);
+      padding:25px;
+      border-radius:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .timeline-content h3{
+      color:var(--primary);
+      margin-bottom:12px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:var(--secondary);
+      color:white;
+      text-align:center;
+      padding:60px 10%;
+    }
+
+    footer p{
+      margin-top:15px;
+      line-height:1.8;
+      color:#d1d5db;
+    }
+
+    .footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  text-align:left;
+}
+
+.footer-links,
+.footer-contact{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.footer-links a{
+  color:#d1d5db;
+  text-decoration:none;
+}
+
+.social-icons{
+  display:flex;
+  gap:16px;
+  margin-top:15px;
+}
+
+.social-icons a{
+  width:45px;
+  height:45px;
+  background:rgba(255,255,255,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.social-icons a:hover{
+  transform:translateY(-5px);
+  background:var(--primary);
+}
+
+.footer-bottom{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  text-align:center;
+}
+    
+    /* SUMMARY PAGE */
+
+    .summary{
+      background:linear-gradient(135deg,#0f172a,#1e3a8a);
+      color:white;
+      border-radius:30px;
+      padding:60px;
+      margin-top:40px;
+      box-shadow:var(--shadow);
+    }
+
+    .summary h3{
+      margin-bottom:20px;
+      font-size:30px;
+    }
+
+    .summary p{
+      line-height:1.9;
+      margin-bottom:18px;
+      color:#e5e7eb;
+    }
+
+    .thankyou-box{
+  margin-top:50px;
+  padding:50px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#2563eb,#0ea5e9);
+  color:white;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.thankyou-box i{
+  font-size:50px;
+  margin-bottom:20px;
+}
+
+.thankyou-box h3{
+  font-size:32px;
+  margin-bottom:20px;
+}
+
+.thankyou-box p{
+  line-height:1.9;
+  margin-bottom:16px;
+  color:#f3f4f6;
+}
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px){
+
+      .hero-content{
+        grid-template-columns:1fr;
+      }
+
+      .hero-text{
+        text-align:center;
+      }
+
+      .hero-text h1{
+        font-size:42px;
+      }
+
+      .avatar{
+        width:280px;
+        height:280px;
+      }
+
+      .timeline::before{
+        left:10px;
+      }
+
+      .timeline-item{
+        width:100%;
+        padding-left:40px;
+        padding-right:0;
+        margin-bottom:30px;
+      }
+
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even){
+        left:0;
+        text-align:left;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <nav>
+      <div class="logo">Digital Portfolio</div>
+
+      <div class="nav-links">
+        <a href="#home">Trang chủ</a>
+        <a href="#goal">Mục tiêu</a>
+        <a href="#projects">Dự án</a>
+        <a href="#summary">Tổng kết</a>
+
+        <button class="toggle-btn" onclick="toggleMode()">
+          🌙 Dark Mode
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="hero-text">
+
+        <div class="badge">
+          Nhập môn công nghệ số và Trí tuệ nhân tạo
+        </div>
+
+        <h1>Nguyễn Sỹ Quyền</h1>
+
+        <h2>Digital Academic Portfolio</h2>
+
+        <p>
+          Sinh viên ngành Sinh học tại Trường Đại học Khoa học Tự nhiên - ĐHQGHN.
+          Portfolio được xây dựng như một không gian học thuật hiện đại nhằm lưu trữ,
+          trình bày và phân tích quá trình rèn luyện kỹ năng số trong bối cảnh học tập
+          và nghiên cứu khoa học.
+        </p>
+
+        <p><strong>Ngành học:</strong> Sinh học</p>
+        <p><strong>Sở thích:</strong> Nghe nhạc, chụp ảnh</p>
+        <p><strong>Email:</strong> syquyen43@gmail.com</p>
+
+        <a href="#projects" class="btn">
+          Khám phá Portfolio
+        </a>
+
+      </div>
+
+      <div class="hero-image">
+
+        <div class="avatar">
+          <img src="https://cdn.phototourl.com/free/2026-05-20-3bea0e18-9d99-4b54-9de3-473aa70e6967.jpg">
+        </div>
+
+      </div>
+
+    </div>
+
+  <div class="career-goal">
+
+  <h3><i class="fas fa-bullseye"></i> Định hướng cá nhân</h3>
+
+  <ul>
+    <li>
+      <i class="fas fa-star"></i>
+      Mục tiêu GPA đạt 3.9+
+    </li>
+
+    <li>
+      <i class="fas fa-earth-americas"></i>
+      Định hướng du học và nghiên cứu quốc tế
+    </li>
+
+    <li>
+      <i class="fas fa-dna"></i>
+      Kết hợp Sinh học với công nghệ số và AI
+    </li>
+  </ul>
+
+</div>
+
+      </section>
+  
+  <!-- GOAL -->
+
+  <section id="goal">
+
+    <div class="section-title">
+      <h2>Mục tiêu của Portfolio</h2>
+      <p>Định hướng học thuật và phát triển kỹ năng số</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Lưu trữ sản phẩm cá nhân để dễ dàng truy cập và chia sẻ</h3>
+
+        <p>
+          Giúp mọi người tham khảo bài làm của bản thân để hoàn thiện
+          sản phẩm của chính họ.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Làm chủ công cụ AI</h3>
+
+        <p>
+          Ứng dụng trí tuệ nhân tạo để hỗ trợ tổng hợp tài liệu,
+          xử lý dữ liệu khoa học, trực quan hóa thông tin và xây dựng
+          tư duy nghiên cứu thông minh hơn.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Phát triển tư duy hệ thống</h3>
+
+        <p>
+          Hình thành tư duy logic, đạo đức khoa học và kỹ năng trình bày chuyên nghiệp
+          thông qua việc xây dựng hệ thống Digital Portfolio cá nhân.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="section-title">
+      <h2>Dự án & Bài tập</h2>
+      <p>Danh mục học tập và quá trình phát triển kỹ năng số</p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Bài 1 -->
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+
+          <h3>Bài tập 1 - Thao tác cơ bản với tệp tin và thư mục</h3>
+
+          <p>
+            <strong>Mục tiêu:</strong>
+            Rèn luyện kỹ năng thao tác với tệp tin và thư mục.
+          </p>
+
+          <p>
+            <strong>Quá trình thực hiện:</strong>
+            Minh họa các bước thao tác bằng hình ảnh và lời dẫn.
+          </p>
+
+          <p>
+            <strong>Nhận xét:</strong>
+            Giúp trui rèn kỹ năng thao tác với tệp tin và thư mục.
+          </p>
+
+          <a class="btn"
+          href="https://1drv.ms/w/c/694a00973761f8da/IQAtjxRRQ1U7Rbr0HZX_lYnAATwCdACaylKgjGicPStp0XY?e=Lo02rh"
+          target="_blank">
+            Xem sản phẩm
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Bài 2 -->
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+
+          <h3>Bài tập 2 - Tìm kiếm và đánh giá thông tin học thuật</h3>
+
+          <p>
+            <strong>Mục tiêu:</strong>
+            Phát triển kỹ năng tìm kiếm và đánh giá thông tin.
+          </p>
+
+          <p>
+            <strong>Quá trình thực hiện:</strong>
+            Lựa chọn chủ để rồi tìm kiếm thông tin từ nhiều nguồn,
+            và phân tích đánh giá độ tin cậy của thông tin học thuật.
+          </p>
+
+          <p>
+            <strong>Nhận xét:</strong>
+            Tăng khả năng tiếp cận tri thức đúng.
+          </p>
+
+          <a class="btn"
+          href="https://1drv.ms/w/c/694a00973761f8da/IQBUlZgkLr_US5EhFlEg2O66AdSmqZDU4ghMghIz_gHa570?e=Wg0PPC"
+          target="_blank">
+            Xem sản phẩm
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Bài 3 -->
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+
+          <h3>Bài tập 3 - Viết prompt hiệu quả cho các tác vụ học tập</h3>
+
+          <p>
+            <strong>Mục tiêu:</strong>
+            Phát triển kỹ năng viết prompt hiệu quả để tận dụng tối đa khả năng 
+            của các mô hình ngôn ngữ lớn trong học tập.
+          </p>
+
+          <p>
+            <strong>Quá trình thực hiện:</strong>
+            Chọn tác vụ học tập, xây dựng các prompt rồi thử nghiệm và so sánh kết quả
+            để phân tích hiệu quả các prompt nhằm rút ra nguyên tắc viết prompt đúng chuẩn.
+          </p>
+
+          <p>
+            <strong>Nhận xét:</strong>
+            Giúp hình thành khả năng tận dụng AI để hỗ trợ xử lý các vấn đề.
+          </p>
+
+          <a class="btn"
+          href="https://1drv.ms/w/c/694a00973761f8da/IQDXlp3r437PRalwNH3kNLOYAWj3gMjEtt1EtnOW6-7OIjg?e=E0Tyc9"
+          target="_blank">
+            Xem sản phẩm
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Bài 4 -->
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+
+          <h3>Bài tập 4 - Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</h3>
+
+          <p>
+            <strong>Mục tiêu:</strong>
+            Thành thạo các công cụ hợp tác trực tuyến và thể hiện năng lực quản lý, 
+            điều phối cá nhân trong dự án nhóm.
+          </p>
+
+          <p>
+            <strong>Quá trình thực hiện:</strong>
+            Báo cáo lại trải nghiệm cá nhân và có minh chứng cụ thể.
+          </p>
+
+          <p>
+            <strong>Nhận xét:</strong>
+            Tăng cường khả năng làm việc nhóm online.
+          </p>
+
+          <a class="btn"
+          href="https://1drv.ms/w/c/694a00973761f8da/IQAiK7ClJzDeRqzueqUVYUiVAUCs4YzsJ9gGheeh3Clu1YM?e=VApcj5"
+          target="_blank">
+            Xem sản phẩm
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Bài 5 -->
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+
+          <h3>Bài tập 5 - Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
+
+          <p>
+            <strong>Mục tiêu:</strong>
+            Thành thạo việc sử dụng các công cụ AI tạo sinh để hỗ trợ quá trình sáng tạo nội dung số.
+          </p>
+
+          <p>
+            <strong>Quá trình thực hiện:</strong>
+            Chọn chủ đề, sử dụng AI để tạo sinh bài làm rồi phân tích, so sánh hiệu quả các 
+            công cụ và rút ra vai trò của AI cùng với các vấn đề đạo đức liên quan.
+          </p>
+
+          <p>
+            <strong>Nhận xét:</strong>
+            AI giúp tiết kiệm thời gian và mở rộng khả năng sáng tạo tuy nhiên yếu tố con người
+            đóng vai trò vô cùng quan trọng trong việc thể hiện dấu ấn cá nhân và kiểm duyệt.
+          </p>
+
+          <a class="btn"
+          href="https://1drv.ms/w/c/694a00973761f8da/IQCuhElQ83muSa69AIHfdG5hAYxtV3ean2zc2sJCXRv4qYg?e=vrBvjr"
+          target="_blank">
+            Xem sản phẩm
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Bài 6 -->
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+
+          <h3>Bài tập 6 - Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
+
+          <p>
+            <strong>Mục tiêu:</strong>
+            Phát triển kỹ năng sử dụng AI có trách nhiệm và đạo đức trong học tập và nghiên cứu.
+          </p>
+
+          <p>
+            <strong>Quá trình thực hiện:</strong>
+            Nghiên cứu chính sách của trường rồi chọn một nhiệm vụ học tập và thực hiện với sự hỗ trợ của AI,
+            sau đó phân tích các vấn đề đạo đức để xây dựng bộ nguyên tắc cá nhân bằng cách tạo infographic minh họa.
+          </p>
+
+          <p>
+            <strong>Nhận xét:</strong>
+            Phát triển được kỹ năng sử dụng AI có trách nhiệm và đạo đức trong học tập và nghiên cứu.
+
+          </p>
+
+          <a class="btn"
+          href="https://1drv.ms/w/c/694a00973761f8da/IQB91ptxNIaFS5y3aaGpHujKAQ6tofqKA35y2kATjwIUL_0?e=UsvjmU"
+          target="_blank">
+            Xem sản phẩm
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SUMMARY -->
+
+  <section id="summary">
+
+    <div class="section-title">
+      <h2>Tổng kết</h2>
+      <p>Nhìn lại hành trình xây dựng Digital Portfolio</p>
+    </div>
+
+    <div class="summary">
+
+      <h3>Trải nghiệm & Cảm nhận</h3>
+
+      <p>
+        Quá trình thực hiện Digital Portfolio không chỉ giúp tôi nâng cao kỹ năng số,
+        mà còn mở ra góc nhìn mới về cách công nghệ hỗ trợ học tập và nghiên cứu khoa học.
+        Tôi dần hiểu rõ hơn vai trò của AI, tư duy hệ thống và khả năng xây dựng hình ảnh học thuật cá nhân.
+      </p>
+
+      <p>
+        Những kiến thức quan trọng nhất mà tôi học được bao gồm:
+        kỹ năng thiết kế website, quản lý dữ liệu học thuật,
+        ứng dụng trí tuệ nhân tạo vào học tập và khả năng trình bày nội dung một cách chuyên nghiệp.
+      </p>
+
+      <p>
+        Điều khiến tôi tâm đắc nhất là việc có thể biến toàn bộ quá trình học tập
+        thành một không gian số trực quan và hiện đại.
+        Tuy nhiên, tôi cũng gặp nhiều thách thức trong việc xây dựng giao diện responsive,
+        tối ưu trải nghiệm người dùng và kết hợp yếu tố học thuật với thiết kế sáng tạo.
+      </p>
+
+      <p>
+        Portfolio này là dấu mốc thể hiện hành trình phát triển kỹ năng số
+        trong thời đại công nghệ và trí tuệ nhân tạo.
+      </p>
+
+    </div>
+
+  <div class="thankyou-box">
+
+  <i class="fas fa-heart"></i>
+
+  <h3>Lời cảm ơn</h3>
+
+  <p>
+    Xin chân thành cảm ơn quý thầy cô và các bạn đã dành thời gian
+    ghé thăm Digital Portfolio của tôi.
+  </p>
+
+  <p>
+    Hành trình xây dựng Portfolio này không chỉ giúp tôi nâng cao kỹ năng số,
+    mà còn là cơ hội để nhìn lại quá trình học tập, sáng tạo và phát triển bản thân.
+  </p>
+
+  <p>
+    Chúc mọi người luôn giữ lửa đam mê, không ngừng học hỏi
+    và đạt được những thành quả tuyệt vời trên con đường của chính mình!
+  </p>
+
+</div>
+
+     </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>Digital Portfolio</h2>
+      <p>
+        Portfolio học thuật cá nhân về công nghệ số và trí tuệ nhân tạo.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Điều hướng</h3>
+
+      <a href="#home">Trang chủ</a>
+      <a href="#goal">Mục tiêu</a>
+      <a href="#projects">Dự án</a>
+      <a href="#summary">Tổng kết</a>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Liên hệ</h3>
+
+      <p>
+        <i class="fas fa-envelope"></i>
+        syquyen43@gmail.com
+      </p>
+
+      <p>
+        <i class="fas fa-school"></i>
+        Trường Đại học Khoa học Tự nhiên - ĐHQGHN
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Nguyễn Sỹ Quyền | Digital Portfolio
+  </div>
+
+</footer>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    function toggleMode(){
+      document.body.classList.toggle("dark");
+    }
+
+  </script>
+
+</body>
+</html>
